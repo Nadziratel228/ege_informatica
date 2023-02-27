@@ -1,0 +1,17 @@
+def main():
+    s = [[int(x) for x in i.split('.')] for i in open('1.txt','r').readlines()]
+    ans2 = []
+    d = {}
+    for i in s: 
+        f = int(str(i[0]) + str(i[1]) + str(224&i[2]) + '0')
+        if f in d: d[f] += 1
+        else: d[f] = 1 
+    ans1 = max(d.items(), key=lambda k_v: k_v[1])[0]
+    for i in s:
+        f = int(str(i[0]) + str(i[1]) + str(224&i[2]) + '0')
+        if f == ans1:
+            st = ''
+            for j in range(4): st += str(i[j])
+            ans2.append(int(st))
+    return ans1, len(set(ans2))
+print(*main())
